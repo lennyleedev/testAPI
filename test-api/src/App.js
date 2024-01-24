@@ -1,22 +1,57 @@
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { johnCreateUser } from './apiService'; // Import the johnCreateUser function
 
 function App() {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    emailAddress: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    johnCreateUser(formData);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Enter some example details.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Full Name:
+            <input
+              type="text"
+              name="full_name"
+              value={formData.fullName}
+              onChange={handleChange}
+            />
+          </label>
+          <br />
+          <label>
+            Email Address:
+            <input
+              type="email"
+              name="email_address"
+              value={formData.emailAddress}
+              onChange={handleChange}
+            />
+          </label>
+          <br />
+          <button type="submit">Submit</button>
+        </form>
       </header>
     </div>
   );
