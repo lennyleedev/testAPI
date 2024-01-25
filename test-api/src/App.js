@@ -35,7 +35,7 @@ function App() {
             <input
               type="text"
               name="full_name"
-              value={formData.fullName}
+              defaultValue={formData.fullName}
               onChange={handleChange}
             />
           </label>
@@ -45,7 +45,7 @@ function App() {
             <input
               type="email"
               name="email_address"
-              value={formData.emailAddress}
+              defaultValue={formData.emailAddress}
               onChange={handleChange}
             />
           </label>
