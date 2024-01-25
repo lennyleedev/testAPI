@@ -5,7 +5,7 @@ import { johnCreateUser } from './apiService'; // Import the johnCreateUser func
 
 function App() {
   const [formData, setFormData] = useState({
-    fullName: '',
+    username: '',
     emailAddress: '',
   });
 
@@ -31,11 +31,11 @@ function App() {
         </p>
         <form onSubmit={handleSubmit}>
           <label>
-            Full Name:
+            Username:
             <input
               type="text"
-              name="full_name"
-              defaultValue={formData.fullName}
+              name="username"
+              defaultValue={formData.username}
               onChange={handleChange}
             />
           </label>
