@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { johnCreateUser } from './apiService'; // Import the johnCreateUser function
+import { lennyCreateUser } from './apiService'; // Import the johnCreateUser function
 
 function App() {
   const [formData, setFormData] = useState({
@@ -19,7 +19,7 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    johnCreateUser(formData);
+    lennyCreateUser(formData);
   };
 
   return (
