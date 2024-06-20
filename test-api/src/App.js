@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { lennyCreateUser } from './apiService'; // Import the johnCreateUser function
+import { lennyCreateUser } from './apiService'; // Import the lennyCreateUser function
 
 function App() {
   const [formData, setFormData] = useState({
     username: '',
     emailAddress: '',
   });
+
+  const [responseMessage, setResponseMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,9 +19,15 @@ function App() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    lennyCreateUser(formData);
+    try {
+      const response = await lennyCreateUser(formData);
+      setResponseMessage('User creation successful!');
+      console.log('Response:', response);
+    } catch (error) {
+      setResponseMessage('Failed to create user.');
+    }
   };
 
   return (
@@ -35,7 +43,7 @@ function App() {
             <input
               type="text"
               name="username"
-              defaultValue={formData.username}
+              value={formData.username}
               onChange={handleChange}
             />
           </label>
@@ -44,14 +52,15 @@ function App() {
             Email Address:
             <input
               type="email"
-              name="email_address"
-              defaultValue={formData.emailAddress}
+              name="emailAddress"
+              value={formData.emailAddress}
               onChange={handleChange}
             />
           </label>
           <br />
           <button type="submit">Submit</button>
         </form>
+        {responseMessage && <p>{responseMessage}</p>}
       </header>
     </div>
   );
